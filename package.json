@@ -1,0 +1,12 @@
+{
+  "name": "simple-vue",
+  "version": "1.0.0",
+  "main": "index.html",
+  "license": "MIT",
+  "scripts": {
+    "dev": "parcel index.html -p 8888"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.1"
+  }
+}

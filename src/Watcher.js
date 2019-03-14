@@ -1,0 +1,36 @@
+import Dep from './Dep'
+
+/**
+ * Watcher 订阅者
+ */
+export default class Watcher {
+  constructor(vm, exp, cb) {
+    this.vm = vm
+    this.exp = exp
+    this.cb = cb
+    this.value = this.get() // 获取初始值，同时把自己添加到订阅器
+  }
+
+  /**
+   * 获取并返回值
+   * @returns {*}
+   */
+  get() {
+    Dep.target = this // 缓存自己
+    const value = this.vm.data[this.exp] // 强制执行监听器的 get 函数，此时触发了 getter，把自己添加到订阅器里
+    Dep.target = null // 释放自己
+    return value
+  }
+
+  /**
+   * 更新值
+   */
+  update() {
+    const newVal = this.vm.data[this.exp] // 新值
+    const oldVal = this.value // 旧值
+    if (newVal !== oldVal) {
+      this.value = newVal
+      this.cb.call(this.vm, this.value) // 调用回调函数，把最新的值更新到 view 中
+    }
+  }
+}
