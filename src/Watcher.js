@@ -4,6 +4,12 @@ import Dep from './Dep'
  * Watcher 订阅者
  */
 export default class Watcher {
+  /**
+   * 构造方法
+   * @param {SimpleVue} vm
+   * @param {String} exp
+   * @param {Function} cb
+   */
   constructor(vm, exp, cb) {
     this.vm = vm
     this.exp = exp
@@ -12,7 +18,7 @@ export default class Watcher {
   }
 
   /**
-   * 获取并返回值
+   * 获取并返回值订阅的 data 初始值
    * @returns {*}
    */
   get() {
@@ -23,7 +29,7 @@ export default class Watcher {
   }
 
   /**
-   * 更新值
+   * 更新订阅的 data 值，并更新 view 的值
    */
   update() {
     const newVal = this.vm.data[this.exp] // 新值

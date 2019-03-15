@@ -4,6 +4,11 @@ import Watcher from './Watcher'
  * Compile 编译器
  */
 export default class Compile {
+  /**
+   * 构造方法
+   * @param {String} el 挂载的元素
+   * @param {SimpleVue} vm vm
+   */
   constructor(el, vm) {
     this.el = document.querySelector(el)
     this.vm = vm
@@ -31,7 +36,8 @@ export default class Compile {
 
   /**
    * 创建 fragment 片段，把需要解析的 dom 节点存入片段里
-   * @param {Element} el
+   * @param {HTMLElement} el
+   * @returns {DocumentFragment}
    */
   nodeToFragment(el) {
     const fragment = document.createDocumentFragment()
@@ -44,8 +50,8 @@ export default class Compile {
   }
 
   /**
-   * 编译 DOM
-   * @param {String} el
+   * 编译节点
+   * @param {DocumentFragment} el
    */
   compileElement(el) {
     const childNodes = el.childNodes
@@ -72,7 +78,7 @@ export default class Compile {
 
   /**
    * 编译元素节点
-   * @param {Node} node
+   * @param {ChildNode} node
    */
   compileElementNode(node) {
     const nodeAttrs = node.attributes
@@ -96,7 +102,7 @@ export default class Compile {
 
   /**
    * 编译事件指令
-   * @param {Node} node
+   * @param {ChildNode} node
    * @param {String} exp
    * @param {String} dir
    */
@@ -113,8 +119,8 @@ export default class Compile {
 
   /**
    * 编译双向绑定
-   * @param {*} node
-   * @param {*} exp
+   * @param {ChildNode} node
+   * @param {String} exp
    */
   compileModel(node, exp) {
     let val = this.vm[exp] // 获取 date 中对应的值
@@ -133,8 +139,8 @@ export default class Compile {
 
   /**
    * 编译文本节点
-   * @param {*} node
-   * @param {*} exp
+   * @param {ChildNode} node
+   * @param {String} exp
    */
   compileText(node, exp) {
     const initText = this.vm[exp]
@@ -149,7 +155,7 @@ export default class Compile {
   /**
    * 更新文本
    * 注意这里直接把插值符内外的文本都替换
-   * @param {*} node
+   * @param {ChildNode} node
    * @param {*} value
    */
   updateText(node, value) {
@@ -158,7 +164,7 @@ export default class Compile {
 
   /**
    * 更新 model 的值
-   * @param {*} node
+   * @param {ChildNode} node
    * @param {*} value
    */
   modelUpdater(node, val) {
@@ -167,7 +173,7 @@ export default class Compile {
 
   /**
    * 判断是否是文本节点
-   * @param {*} node
+   * @param {ChildNode} node
    * @returns {Boolean}
    */
   isTextNode(node) {
@@ -176,7 +182,7 @@ export default class Compile {
 
   /**
    * 判断是否是元素节点
-   * @param {*} node
+   * @param {ChildNode} node
    * @returns {Boolean}
    */
   isElementNode(node) {

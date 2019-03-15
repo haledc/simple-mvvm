@@ -5,6 +5,10 @@ import Compile from './Compile'
  * SimpleVue
  */
 export default class SimpleVue {
+  /**
+   * 构造方法
+   * @param {Object} options
+   */
   constructor(options) {
     this.data = options.data
     this.methods = options.methods
@@ -23,7 +27,7 @@ export default class SimpleVue {
   }
 
   /**
-   * 代理 this.data 的数据
+   * 代理数据方法
    * @param {String} key
    */
   proxyKeys(key) {

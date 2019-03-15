@@ -1,16 +1,20 @@
 import Dep from './Dep'
 
 /**
- * Observer 数据监听器
+ * Observer 监听器
  */
 class Observer {
+  /**
+   * 构造方法
+   * @param {Object} data
+   */
   constructor(data) {
     this.data = data
     this.walk() // 执行监听
   }
 
   /**
-   * 监听 data，遍历data 里面的所有值并监听
+   * 监听 data，遍历 data 里面的所有值并监听
    */
   walk() {
     Object.keys(this.data).forEach(key =>
@@ -52,7 +56,8 @@ class Observer {
 /**
  * 监听方法
  * 工厂函数
- * @param { Object } value
+ * @param {Object} value
+ * @returns {Observer}
  */
 function observe(value) {
   if (!value || typeof value !== 'object') return

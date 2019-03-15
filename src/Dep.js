@@ -2,13 +2,16 @@
  * Dep 订阅器
  */
 export default class Dep {
+  /**
+   * 构造方法
+   */
   constructor() {
     this.subs = []
   }
 
   /**
-   * 添加到订阅器
-   * @param {*} sub
+   * 添加订阅者
+   * @param {Watcher} sub
    */
   addSub(sub) {
     this.subs.push(sub)
