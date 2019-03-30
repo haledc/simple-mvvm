@@ -1,6 +1,6 @@
-import SimpleVue from './src/index'
+import SimpleVM from './src/index'
 
-const vm = new SimpleVue({
+const vm = new SimpleVM({
   // 挂载元素
   el: '#app',
 
@@ -13,15 +13,14 @@ const vm = new SimpleVue({
   // 方法
   methods: {
     clickMe() {
-      this.title = 'hello 😁'
-      alert(this.title)
+      alert(this.name)
     }
   },
 
   // 挂载时的方法
   mounted() {
     setTimeout(() => {
-      this.title = 'hello vue 🚀'
+      this.title = 'hello MVVM 🚀'
     }, 3000)
   }
 })

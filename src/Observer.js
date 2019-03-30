@@ -29,24 +29,24 @@ class Observer {
    * @param {*} val
    */
   defineReactive(data, key, val) {
-    // 创建一个订阅器
+    // 创建一个依赖收集
     const dep = new Dep()
 
     // 递归遍历子属性
-    observe(val)
+    if (typeof val === 'object') observe(val)
 
     Object.defineProperty(data, key, {
       enumerable: true,
       configurable: true,
       get() {
         if (Dep.target) {
-          dep.addSub(Dep.target) // 添加到订阅器
+          dep.addSub(Dep.target) // 添加到依赖收集
         }
         return val
       },
       set(newVal) {
         if (newVal === val) return
-        val = newVal
+        val = newVal // 更新值
         dep.notify() // 调用 notify 通知
       }
     })

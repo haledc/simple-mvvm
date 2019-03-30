@@ -2,9 +2,9 @@ import observe from './Observer'
 import Compile from './Compile'
 
 /**
- * SimpleVue
+ * SimpleVM
  */
-export default class SimpleVue {
+export default class SimpleVM {
   /**
    * 构造方法
    * @param {Object} options
@@ -13,7 +13,7 @@ export default class SimpleVue {
     this.data = options.data
     this.methods = options.methods
 
-    // 使用 this 代理 this.data 数据
+    // 使用 this 代理 this.data
     Object.keys(this.data).forEach(key => this.proxyKeys(key))
 
     // 监听数据
