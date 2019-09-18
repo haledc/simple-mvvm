@@ -1,12 +1,16 @@
 {
   "name": "simple-mvvm",
   "version": "1.0.0",
-  "main": "index.html",
+  "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "parcel index.html -p 8888"
+    "dev": "webpack-dev-server --mode development",
+    "build": "webpack --mode production"
   },
   "devDependencies": {
-    "parcel-bundler": "^1.12.1"
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.8.1"
   }
 }
