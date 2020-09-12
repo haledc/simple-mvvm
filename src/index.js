@@ -1,16 +1,16 @@
-import observe from './Observer'
-import Compile from './Compile'
+import observe from "./Observer";
+import Compile from "./Compile";
 
 export default class SimpleVM {
   constructor(options) {
-    this.data = options.data
-    this.methods = options.methods
+    this.data = options.data;
+    this.methods = options.methods;
 
     // 使用 this 代理 this.data
-    Object.keys(this.data).forEach(key => this.proxyKeys(key)) 
-    observe(this.data)
-    new Compile(options.el, this)
-    options.mounted && options.mounted.call(this)
+    Object.keys(this.data).forEach((key) => this.proxyKeys(key));
+    observe(this.data);
+    new Compile(options.el, this);
+    options.mounted && options.mounted.call(this);
   }
 
   proxyKeys(key) {
@@ -18,11 +18,11 @@ export default class SimpleVM {
       enumerable: true,
       configurable: true,
       get: () => {
-        return this.data[key]
+        return this.data[key];
       },
-      set: newVal => {
-        this.data[key] = newVal
-      }
-    })
+      set: (newVal) => {
+        this.data[key] = newVal;
+      },
+    });
   }
 }
